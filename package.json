@@ -1,0 +1,30 @@
+{
+  "name": "tender-bid-scorer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Deterministic, explainable scorer for tender bids: price against the ceiling, technical compliance, delivery time and experience, with one written reason per bid.",
+  "license": "MIT",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "bin": {
+    "tender-bid-scorer": "dist/src/cli.js"
+  },
+  "files": [
+    "dist/src",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test dist/test/*.test.js",
+    "typecheck": "tsc --noEmit",
+    "start": "npm run build --silent && node dist/src/cli.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}

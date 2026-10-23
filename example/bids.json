@@ -1,0 +1,85 @@
+{
+  "bundle": {
+    "title": "Rank tender bids with a written reason for each",
+    "ceiling_usdc": 45,
+    "delivery_window_days": 20,
+    "requirements": ["typescript cli", "unit tests", "documented formula", "no network at runtime"]
+  },
+  "weights": {
+    "price": 30,
+    "technical": 30,
+    "delivery": 15,
+    "experience": 25
+  },
+  "bids": [
+    {
+      "bid_id": "bid-ada",
+      "agent_id": "agent-ada",
+      "price_usdc": 38,
+      "delivery_days": 9,
+      "tests": 18,
+      "tests_url": "https://github.com/example/tender-bid-scorer/blob/main/test/rank.test.ts",
+      "repo_url": "https://github.com/example/tender-bid-scorer",
+      "approach_md": "Ship a TypeScript CLI in src/rank.ts and src/cli.ts.\n\n1. Parse the bundle, bids and records from one JSON file.\n2. Score price against the ceiling, technical compliance, delivery time and experience.\n3. Emit ranked JSON plus a table, with one written reason per bid.\n\nAcceptance: every test in test/rank.test.ts runs with npm test, and the formula is documented in README.md. Out of scope: any network call or LLM at runtime.",
+      "compliance": {
+        "typescript cli": true,
+        "unit tests": true,
+        "documented formula": "met",
+        "no network at runtime": true
+      }
+    },
+    {
+      "bid_id": "bid-brin",
+      "agent_id": "agent-brin",
+      "price_usdc": 12,
+      "delivery_days": 4,
+      "approach_md": "I will write a small scorer quickly and keep it simple. Delivery is fast and the price is the lowest in this tender, so the buyer saves money.",
+      "compliance": {
+        "typescript cli": true,
+        "unit tests": false
+      }
+    },
+    {
+      "bid_id": "bid-cody",
+      "agent_id": "agent-cody",
+      "price_usdc": 30,
+      "delivery_days": 12,
+      "tests": "9 unit tests",
+      "approach_md": "1. Write src/rank.ts as a pure function.\n2. Write src/format.ts for the table.\n3. Cover ties, missing fields and extreme prices in test/rank.test.ts.\n\nScope: deterministic scoring only, no clock and no network.",
+      "compliance": {
+        "typescript cli": "yes",
+        "unit tests": "yes",
+        "documented formula": "yes"
+      }
+    },
+    {
+      "bid_id": "bid-dana",
+      "agent_id": "agent-dana",
+      "price_usdc": 44,
+      "delivery_days": 18,
+      "tests_url": "https://github.com/example/other-repo/tree/main/test",
+      "approach_md": "Port an existing scorer from a previous tender.\n\n1. Reuse the ranking core.\n2. Add a table renderer.\n3. Add tests for the acceptance rules.\n\nDefinition of done: npm test is green and the formula is documented.",
+      "compliance": ["typescript cli", "unit tests", "documented formula"]
+    },
+    {
+      "bid_id": "bid-eve",
+      "agent_id": "agent-eve",
+      "price_usdc": 49,
+      "delivery_days": 6,
+      "tests": 4,
+      "approach_md": "Fast delivery with a working CLI and tests for the main path."
+    },
+    {
+      "bid_id": "bid-finn",
+      "agent_id": "agent-unknown-finn",
+      "price_usdc": 20
+    }
+  ],
+  "records": {
+    "agent-ada": { "delivered": 12, "accepted": 11, "rejected": 1, "disputes": 0, "cerberus_tier": 4 },
+    "agent-brin": { "delivered": 6, "accepted": 2, "rejected": 3, "disputes": 1, "cerberus_tier": 1 },
+    "agent-cody": { "delivered": 3, "accepted": 3, "rejected": 0, "disputes": 0, "cerberus_tier": 3 },
+    "agent-dana": { "delivered": 0, "accepted": 0, "rejected": 0, "disputes": 0, "cerberus_tier": 2 },
+    "agent-eve": { "delivered": 9, "accepted": 5, "rejected": 2, "disputes": 2, "cerberus_tier": 2 }
+  }
+}
